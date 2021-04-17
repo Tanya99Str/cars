@@ -1,0 +1,39 @@
+.container {
+  width: 100%;
+  padding: 10vh 15vw 5vh 15vw;
+}
+
+h1 {
+  font-size: 1.7em;
+  font-weight: bold;
+}
+
+.user-info {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+h2 {
+  font-size: 1.4em;
+  font-weight: bold;
+}
+
+.alert-danger {
+  color: red;
+}
+
+.buttons {
+  margin-top: 4vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.buttons button:first-child {
+  margin-right: .5vw;
+}
+
+.btn-new-car {
+  float: right;
+}

@@ -1,0 +1,27 @@
+form {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.delete {
+  height: auto!important;
+  padding: 1.5vh;
+  /*background: red;*/
+  /*border: 1px solid red;*/
+  border-radius: 4px;
+}
+
+.delete:hover {
+  background: white;
+  border: 1px solid red;
+}
+
+.delete:hover svg * {
+  fill: red;
+}
+
+.error {
+  color: red;
+}
