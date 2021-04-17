@@ -1,0 +1,73 @@
+<div class="container">
+  <h1>Владелец</h1>
+  <form [formGroup]="ownerFormGroup">
+    <div class="user-info">
+      <div style="width: 30%;">
+        <mat-form-field class="example-form-field" style="width: 100%;">
+          <mat-label>Имя</mat-label>
+          <input matInput type="text" formControlName="firstName"
+                 (input)="setFormValue('firstName')"
+          >
+          <button mat-button matSuffix mat-icon-button aria-label="Clear"
+                  *ngIf="canEdit" (click)="deleteValue('firstName')">
+            <mat-icon>close</mat-icon>
+          </button>
+          <mat-error *ngIf="ownerFormGroup?.get('firstName').hasError('required')||
+          ownerFormGroup?.get('firstName').hasError('incorrect')">
+            <span *ngIf="ownerFormGroup.get('firstName').hasError('incorrect')">Некорректный формат</span>
+            <span *ngIf="ownerFormGroup.get('firstName').hasError('required')">Поле обязательное</span>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div style="width: 30%;">
+      <mat-form-field class="example-form-field" style="width: 100%;">
+        <mat-label>Фамилия</mat-label>
+        <input matInput type="text" formControlName="lastName"
+        (input)="setFormValue('lastName')">
+        <button mat-button matSuffix mat-icon-button aria-label="Clear"
+                *ngIf="canEdit" (click)="deleteValue('lastName')">
+          <mat-icon>close</mat-icon>
+        </button>
+
+
+
+        <mat-error *ngIf="ownerFormGroup?.get('lastName').hasError('required')||
+          ownerFormGroup?.get('lastName').hasError('incorrect')">
+          <span *ngIf="ownerFormGroup?.get('lastName').hasError('incorrect')">Некорректный формат</span>
+          <span *ngIf="ownerFormGroup?.get('lastName').hasError('required')">Поле обязательное</span>
+        </mat-error>
+      </mat-form-field>
+      </div>
+      <div style="width: 30%;">
+      <mat-form-field class="example-form-field" style="width: 100%;">
+        <mat-label>Отчество</mat-label>
+        <input matInput type="text" formControlName="middleName"
+        (input)="setFormValue('middleName')">
+        <button mat-button matSuffix mat-icon-button aria-label="Clear"
+                *ngIf="canEdit" (click)="deleteValue('middleName')">
+          <mat-icon>close</mat-icon>
+        </button>
+        <mat-error *ngIf="ownerFormGroup?.get('middleName').hasError('required')||
+          ownerFormGroup?.get('middleName').hasError('incorrect')">
+          <span *ngIf="ownerFormGroup?.get('middleName').hasError('incorrect')">Некорректный формат</span>
+          <span *ngIf="ownerFormGroup?.get('middleName').hasError('required')">Поле обязательное</span>
+        </mat-error>
+      </mat-form-field>
+      </div>
+    </div>
+  </form>
+  <div class="cars">
+    <app-one-owner-cars *ngFor="let one of owner?.aCars" [car]="one" [canEdit]="canEdit"
+                        (onDelete)="deleteCar(one)"></app-one-owner-cars>
+    <button class="pointer btn-new-car" mat-raised-button color="accent" (click)="addNewCar()"
+            *ngIf="type!='NONE'">Добавить машину</button>
+    <div class="buttons">
+      <button class="pointer" (click)="edit()" mat-raised-button color="accent"
+              *ngIf="type==='EDIT'">Обновить</button>
+      <button class="pointer" (click)="createUser()" mat-raised-button color="accent"
+      *ngIf="type==='REGISTRATION'">Добавить</button>
+      <button class="pointer" (click)="reset()" mat-raised-button>На главную</button>
+    </div>
+  </div>
+
+</div>

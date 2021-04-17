@@ -1,0 +1,77 @@
+<form [formGroup]="carFormGroup">
+  <div style="width: 20%;">
+    <mat-form-field class="example-form-field" style="width: 100%;">
+      <mat-label>Номер</mat-label>
+      <input matInput type="text" formControlName="carNumber" [disabled]="!canEdit"
+             (input)="setFormValue('carNumber')">
+      <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="deleteValue('carNumber')"
+              *ngIf="canEdit">
+        <mat-icon>close</mat-icon>
+      </button>
+      <mat-error *ngIf="carFormGroup?.get('carNumber').hasError('incorrect')||
+                 carFormGroup?.get('carNumber').hasError('required')||
+                 carFormGroup?.get('carNumber').hasError('existCarNumber')||
+                 carFormGroup.get('carNumber').hasError('registeredByAnotherUser')">
+        <span *ngIf="carFormGroup.get('carNumber').hasError('incorrect')">Некорректный формат</span>
+        <span *ngIf="carFormGroup.get('carNumber').hasError('required')">Поле обязательное</span>
+        <span *ngIf="carFormGroup.get('carNumber').hasError('existCarNumber')">Даний номер вже існує</span>
+        <span *ngIf="carFormGroup.get('carNumber').hasError('registeredByAnotherUser')">Даний номер зареєстрований іншим користувачем</span>
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div style="width: 20%;">
+    <mat-form-field class="example-form-field" style="width: 100%;">
+      <mat-label>Название производителя</mat-label>
+      <input matInput type="text" formControlName="manufacturerName" [disabled]="!canEdit"
+             (input)="setFormValue('manufacturerName')">
+      <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="deleteValue('manufacturerName')"
+              *ngIf="canEdit">
+        <mat-icon>close</mat-icon>
+      </button>
+      <mat-error *ngIf="carFormGroup?.get('manufacturerName').hasError('required')">
+        <span *ngIf="carFormGroup.get('manufacturerName').hasError('required')">Поле обязательное</span>
+      </mat-error>
+
+    </mat-form-field>
+  </div>
+  <div style="width: 20%;">
+    <mat-form-field class="example-form-field" style="width: 100%;">
+      <mat-label>Название модели</mat-label>
+      <input matInput type="text" formControlName="model" [disabled]="!canEdit"
+             (input)="setFormValue('model')">
+      <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="deleteValue('model')"
+              *ngIf="canEdit">
+        <mat-icon>close</mat-icon>
+      </button>
+      <mat-error *ngIf="carFormGroup?.get('model').hasError('required')">
+        <span *ngIf="carFormGroup.get('model').hasError('required')">Поле обязательное</span>
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div style="width: 20%;">
+    <mat-form-field class="example-form-field" style="width: 100%;">
+      <mat-label>Год</mat-label>
+      <input matInput type="text" formControlName="year" [disabled]="!canEdit"
+             (input)="setFormValue('year')">
+      <button mat-button matSuffix aria-label="Clear" (click)="deleteValue('year')"
+              *ngIf="canEdit">
+        <mat-icon>close</mat-icon>
+      </button>
+      <mat-error *ngIf="carFormGroup?.get('year').hasError('incorrect')||
+      carFormGroup?.get('year').hasError('required')">
+        <span *ngIf="carFormGroup.get('year').hasError('incorrect')">Некорректный формат (мин 1990г)</span>
+        <span *ngIf="carFormGroup.get('year').hasError('required')">Поле обязательное</span>
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <button mat-raised-button color="warn" [disabled]="!canEdit"
+          [ngClass]="{'delete': canEdit}"
+          (click)="deleteCar(car)"
+          style="padding: 1vh">
+    <svg width="14" height="14" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M13.9844 0.984375V3H0.015625V0.984375H3.48438L4.51562 0H9.48438L10.5156 0.984375H13.9844ZM1 15.9844V3.98438H13V15.9844C13 16.5156 12.7969 16.9844 12.3906 17.3906C11.9844 17.7969 11.5156 18 10.9844 18H3.01562C2.48438 18 2.01562 17.7969 1.60938 17.3906C1.20312 16.9844 1 16.5156 1 15.9844Z"
+        fill="white"/>
+    </svg>
+  </button>
+</form>
