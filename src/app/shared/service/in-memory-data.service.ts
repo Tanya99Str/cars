@@ -33,8 +33,4 @@ export class InMemoryDataService implements InMemoryDbService {
     return {users};
 
   }
-
-  genId(owners: OwnerEntity[]): number {
-    return owners.length > 0 ? Math.max(...owners.map(owner => owner.id)) + 1 : 11;
-  }
 }

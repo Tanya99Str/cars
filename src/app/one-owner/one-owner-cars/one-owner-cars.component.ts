@@ -47,6 +47,9 @@ export class OneOwnerCarsComponent implements OnInit {
       } else if (!isNotNullOrUndefined(value['owner_id']) && (!isNotNullOrUndefined(value['owner_id']))) {
         // this.canEdit = false;
         this.ownerId = null;
+        this.owner = new OwnerEntity();
+        this.owner.aCars = []
+        this.owner.aCars[0] = new CarEntity();
       }
     });
     this.actualYear = moment().year();
@@ -138,6 +141,11 @@ export class OneOwnerCarsComponent implements OnInit {
       } else {
         this.carFormGroup.get('year').setErrors(null);
       }
+    }
+    console.log(this.car.id);
+    if (!this.car.id) {
+      this.car.id = this.genId(this.owner.aCars);
+      console.log(this.car.id);
     }
     this.car.carNumber = this.carFormGroup.get('carNumber').value;
     this.car.manufacturerName = this.carFormGroup.get('manufacturerName').value;
@@ -242,7 +250,11 @@ export class OneOwnerCarsComponent implements OnInit {
   }
 
   genId(cars: CarEntity[]): number {
-    return cars.length > 0 ? Math.max(...cars.map(car => car.id)) + 1 : 11;
+    if (cars) {
+      return cars.length > 0 ? Math.max(...cars.map(car => car.id)) + 1 : 11;
+    } else {
+      return 1;
+    }
   }
 
   ngOnInit(): void {
